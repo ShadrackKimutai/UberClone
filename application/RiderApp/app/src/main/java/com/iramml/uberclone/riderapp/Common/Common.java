@@ -1,19 +1,19 @@
 package com.iramml.uberclone.riderapp.Common;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.iramml.uberclone.riderapp.Interfaces.IFCMService;
 import com.iramml.uberclone.riderapp.Messages.Errors;
 import com.iramml.uberclone.riderapp.Messages.Message;
 import com.iramml.uberclone.riderapp.Messages.Messages;
-import com.iramml.uberclone.riderapp.Model.FCMResponse;
-import com.iramml.uberclone.riderapp.Model.Notification;
-import com.iramml.uberclone.riderapp.Model.Pickup;
-import com.iramml.uberclone.riderapp.Model.User;
-import com.iramml.uberclone.riderapp.Model.Sender;
-import com.iramml.uberclone.riderapp.Model.Token;
+import com.iramml.uberclone.riderapp.Model.fcm.FCMResponse;
+import com.iramml.uberclone.riderapp.Model.fcm.Notification;
+import com.iramml.uberclone.riderapp.Model.firebase.Pickup;
+import com.iramml.uberclone.riderapp.Model.firebase.User;
+import com.iramml.uberclone.riderapp.Model.fcm.Sender;
+import com.iramml.uberclone.riderapp.Model.firebase.Token;
 import com.iramml.uberclone.riderapp.Retrofit.GoogleMapsAPI;
 import com.iramml.uberclone.riderapp.Retrofit.IFCMClient;
 import com.iramml.uberclone.riderapp.Retrofit.IGoogleAPI;

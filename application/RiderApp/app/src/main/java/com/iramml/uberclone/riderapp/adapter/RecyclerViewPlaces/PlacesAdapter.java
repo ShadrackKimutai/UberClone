@@ -1,41 +1,46 @@
-package com.iramml.uberclone.riderapp.recyclerViewHistory;
+package com.iramml.uberclone.riderapp.adapter.RecyclerViewPlaces;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.iramml.uberclone.riderapp.Model.History;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.iramml.uberclone.riderapp.Model.placesapi.Results;
 import com.iramml.uberclone.riderapp.R;
 
 import java.util.ArrayList;
 
-public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHolder>{
+public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder>{
     Context context;
-    ArrayList<History> items;
+    ArrayList<Results> items;
     ClickListener listener;
     ViewHolder viewHolder;
+    DatabaseReference favLocations;
+    FirebaseDatabase database;
 
-    public historyAdapter(Context context, ArrayList<History> items, ClickListener listener ){
+    public PlacesAdapter(Context context, ArrayList<Results> items, ClickListener listener ){
         this.context=context;
         this.items=items;
         this.listener=listener;
+        database= FirebaseDatabase.getInstance();
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(context).inflate(R.layout.history_template,viewGroup,false);
+        View view= LayoutInflater.from(context).inflate(R.layout.template_place_item,viewGroup,false);
         viewHolder=new ViewHolder(view, listener);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.tvDriverName.setText("Driver Name: "+items.get(i).getName());
-        viewHolder.tvTripDate.setText("Date: "+items.get(i).getTripDate());
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
+        viewHolder.tvPlaceName.setText(items.get(i).formatted_address);
     }
     @Override
     public int getItemCount() {
@@ -43,12 +48,11 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView tvDriverName, tvTripDate;
+        TextView tvPlaceName;
         ClickListener listener;
         public ViewHolder(View itemView, ClickListener listener) {
             super(itemView);
-            tvDriverName=itemView.findViewById(R.id.tvDriverName);
-            tvTripDate=itemView.findViewById(R.id.tvTripDate);
+            tvPlaceName=itemView.findViewById(R.id.tvPlaceName);
             this.listener=listener;
             itemView.setOnClickListener(this);
         }
